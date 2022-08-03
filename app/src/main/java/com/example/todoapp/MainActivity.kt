@@ -21,8 +21,10 @@ class MainActivity : AppCompatActivity(){
         val fullTodoList = ArrayList<Task>()
         val todoListToAdapter = ArrayList<Task>()
 
-        fullTodoList.add(Task(1,"1.7.2022", "1.7.2022", "one", "hello"))
-        fullTodoList.add(Task(2,"2.7.2022", "2.7.2022", "two", "hello"))
+        fullTodoList.add(Task(1,"1.7.2022", "1.7.2022", "14:00", "one", "hello"))
+        fullTodoList.add(Task(2,"2.7.2022", "2.7.2022", "15:00", "two", "hello"))
+        fullTodoList.add(Task(3,"2.7.2022", "2.7.2022", "14:00", "three", "hello"))
+        fullTodoList.add(Task(4,"1.7.2022", "1.7.2022", "12:00", "four", "hello"))
 
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = adapter
@@ -32,7 +34,13 @@ class MainActivity : AppCompatActivity(){
             intent.putExtra("name", Task.name)
             intent.putExtra("start", Task.date_start)
             intent.putExtra("finish", Task.date_finish)
+            intent.putExtra("time", Task.time)
             intent.putExtra("desc", Task.description)
+            startActivity(intent)
+        }
+
+        fab.setOnClickListener{
+            val intent = Intent(this, MainActivity3::class.java)
             startActivity(intent)
         }
 
@@ -44,10 +52,8 @@ class MainActivity : AppCompatActivity(){
                     todoListToAdapter.add(task)
                 }
             }
+            todoListToAdapter.sortBy { it.time }
             adapter.setInfo(todoListToAdapter)
-//            fab.setOnClickListener{
-//
-//            }
         }
     }
 }

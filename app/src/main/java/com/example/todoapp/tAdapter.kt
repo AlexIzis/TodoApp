@@ -15,6 +15,7 @@ class tAdapter: RecyclerView.Adapter<tAdapter.ViewHolder>() {
     inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         val edt_text = itemView.findViewById<TextView>(R.id.nameText)
         val dt_text = itemView.findViewById<TextView>(R.id.dateText)
+        val tm_text = itemView.findViewById<TextView>(R.id.timeText)
         init {
             itemView.setOnClickListener{
                 onItemClick?.invoke(Todolist[adapterPosition])
@@ -28,6 +29,7 @@ class tAdapter: RecyclerView.Adapter<tAdapter.ViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: tAdapter.ViewHolder, position: Int) {
+        holder.tm_text.text = Todolist[position].time
         holder.edt_text.text = Todolist[position].name
         holder.dt_text.text = Todolist[position].date_start
     }

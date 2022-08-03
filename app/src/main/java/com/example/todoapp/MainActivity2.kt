@@ -20,6 +20,7 @@ class MainActivity2 : AppCompatActivity() {
         val start = intent.getStringExtra("start")
         val finish = intent.getStringExtra("finish")
         val desc = intent.getStringExtra("desc")
+        val time = intent.getStringExtra("time")
 
         val dateStart = start?.let { SimpleDateFormat("dd.mm.yyyy").parse(it) }
         val dateFinish = finish?.let { SimpleDateFormat("dd.mm.yyyy").parse(it) }
@@ -32,6 +33,7 @@ class MainActivity2 : AppCompatActivity() {
         if (dateFinish != null) {
             resStr.put("date_finish", dateFinish.time)
         }
+        resStr.put("time", time)
         resStr.put("name", name)
         resStr.put("description", desc)
 
