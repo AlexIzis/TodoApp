@@ -1,11 +1,14 @@
 package com.example.todoapp
 
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
 import org.json.JSONObject
+import java.text.SimpleDateFormat
 
 class MainActivity2 : AppCompatActivity() {
+    @SuppressLint("SimpleDateFormat")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main2)
@@ -18,14 +21,20 @@ class MainActivity2 : AppCompatActivity() {
         val finish = intent.getStringExtra("finish")
         val desc = intent.getStringExtra("desc")
 
+        val dateStart = start?.let { SimpleDateFormat("dd.mm.yyyy").parse(it) }
+        val dateFinish = finish?.let { SimpleDateFormat("dd.mm.yyyy").parse(it) }
 
-        val res_str = JSONObject()
-        res_str.put("id", id)
-        res_str.put("date_start", start)
-        res_str.put("date_finish", finish)
-        res_str.put("name", name)
-        res_str.put("description", desc)
+        val resStr = JSONObject()
+        resStr.put("id", id)
+        if (dateStart != null) {
+            resStr.put("date_start", dateStart.time)
+        }
+        if (dateFinish != null) {
+            resStr.put("date_finish", dateFinish.time)
+        }
+        resStr.put("name", name)
+        resStr.put("description", desc)
 
-        text.text = res_str.toString(4)
+        text.text = resStr.toString(4)
     }
 }
