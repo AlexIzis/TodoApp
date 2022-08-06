@@ -1,7 +1,6 @@
 package com.example.todoapp
 
 import android.app.Activity
-import android.app.Instrumentation
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -17,20 +16,30 @@ class MainActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        /** Инициализация необходимых переменных */
         val calendar: CalendarView = findViewById(R.id.calendarView)
         val fab: FloatingActionButton = findViewById(R.id.floatingActionButton)
         val recyclerView: RecyclerView = findViewById(R.id.recyclerview)
-        val adapter = tAdapter()
-        val fullTodoList = ArrayList<Task>()
-        val todoListToAdapter = ArrayList<Task>()
+        val adapter = TAdapter() /** Адаптер RecyclerView */
+        val fullTodoList = ArrayList<Task>() /** Массив для хранения всего списка заметок */
+        val todoListToAdapter = ArrayList<Task>() /** Массив с отобранными по дню заметками,
+                                                    который будет передан в адаптер */
 
-        fullTodoList.add(Task(1,"1.7.2022", "1.7.2022", "14:00", "one", "hello"))
-        fullTodoList.add(Task(2,"2.7.2022", "2.7.2022", "15:00", "two", "hello"))
-        fullTodoList.add(Task(3,"2.7.2022", "2.7.2022", "14:00", "three", "hello"))
-        fullTodoList.add(Task(4,"1.7.2022", "1.7.2022", "12:31", "four", "hello"))
+        /** Заполнение массива заметок для проверки работоспособности программы */
+        fullTodoList.add(Task(1,"1.7.2022", "1.7.2022", "14:00",
+            "one", "hello"))
+        fullTodoList.add(Task(2,"2.7.2022", "2.7.2022", "15:00",
+            "two", "hello"))
+        fullTodoList.add(Task(3,"2.7.2022", "2.7.2022", "14:00",
+            "three", "hello"))
+        fullTodoList.add(Task(4,"1.7.2022", "1.7.2022", "12:31",
+            "four", "hello"))
 
+        /** Настройка RecyclerView */
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = adapter
+
+        /** По нажатию на заметку выполняется передача данных в отдельное activity и его запуск*/
         adapter.onItemClick = { Task ->
             val intent = Intent(this, MainActivity2::class.java)
             intent.putExtra("id", Task.id)
@@ -42,6 +51,8 @@ class MainActivity : AppCompatActivity(){
             startActivity(intent)
         }
 
+        /** Получение данных из activity, которое отвечает за сбор информации о новой заметке,
+         *  и её создание */
         val getResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
             if (it.resultCode == Activity.RESULT_OK){
                 val id = fullTodoList.size + 1
@@ -54,13 +65,17 @@ class MainActivity : AppCompatActivity(){
             }
         }
 
+        /** Слушатель нажатия кнопки добавления заметки
+         * getResult.launch аналог startActivityForResult */
         fab.setOnClickListener{
             val intent = Intent(this, MainActivity3::class.java)
             getResult.launch(intent)
         }
 
-
-        calendar.setOnDateChangeListener { calendarView, year, month, dayOfMonth ->
+        /** Слушатель нажатия на дату в календаре
+         * Происходит отбор заметок выбранной даты в отдельный массив, его сортировка по времени
+         * и отправка в адаптер для отображения */
+        calendar.setOnDateChangeListener { _, year, month, dayOfMonth ->
             val curDate = "$dayOfMonth.$month.$year"
             todoListToAdapter.clear()
             for (task in fullTodoList){

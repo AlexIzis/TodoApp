@@ -1,8 +1,8 @@
 package com.example.todoapp
 
-import java.sql.Time
-import java.sql.Timestamp
-
+/**
+ * Класс Task описывает одну заметку
+ */
 class Task (
     var id: Int,
     var date_start: String,
