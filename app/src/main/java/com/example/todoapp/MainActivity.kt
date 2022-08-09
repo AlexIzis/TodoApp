@@ -21,8 +21,8 @@ class MainActivity : AppCompatActivity(){
         val fab: FloatingActionButton = findViewById(R.id.floatingActionButton)
         val recyclerView: RecyclerView = findViewById(R.id.recyclerview)
         val adapter = TAdapter() /** Адаптер RecyclerView */
-        val fullTodoList = ArrayList<Task>() /** Массив для хранения всего списка заметок */
-        val todoListToAdapter = ArrayList<Task>() /** Массив с отобранными по дню заметками,
+        val fullTodoList = mutableListOf<Task>() /** Массив для хранения всего списка заметок */
+        val todoListToAdapter = mutableListOf<Task>() /** Массив с отобранными по дню заметками,
                                                     который будет передан в адаптер */
 
         /** Заполнение массива заметок для проверки работоспособности программы */
@@ -35,17 +35,18 @@ class MainActivity : AppCompatActivity(){
         fullTodoList.add(Task(4,"1.7.2022", "1.7.2022", "12:31",
             "four", "hello"))
 
+
         /** Настройка RecyclerView */
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = adapter
 
         /** По нажатию на заметку выполняется передача данных в отдельное activity и его запуск*/
         adapter.onItemClick = { Task ->
-            val intent = Intent(this, MainActivity2::class.java)
+            val intent = Intent(this, ShowTodoActivity::class.java)
             intent.putExtra("id", Task.id)
             intent.putExtra("name", Task.name)
-            intent.putExtra("start", Task.date_start)
-            intent.putExtra("finish", Task.date_finish)
+            intent.putExtra("start", Task.dateStart)
+            intent.putExtra("finish", Task.dateFinish)
             intent.putExtra("time", Task.time)
             intent.putExtra("desc", Task.description)
             startActivity(intent)
@@ -68,7 +69,7 @@ class MainActivity : AppCompatActivity(){
         /** Слушатель нажатия кнопки добавления заметки
          * getResult.launch аналог startActivityForResult */
         fab.setOnClickListener{
-            val intent = Intent(this, MainActivity3::class.java)
+            val intent = Intent(this, CreateTodoActivity::class.java)
             getResult.launch(intent)
         }
 
@@ -79,7 +80,7 @@ class MainActivity : AppCompatActivity(){
             val curDate = "$dayOfMonth.$month.$year"
             todoListToAdapter.clear()
             for (task in fullTodoList){
-                if (task.date_start == curDate){
+                if (task.dateStart == curDate){
                     todoListToAdapter.add(task)
                 }
             }

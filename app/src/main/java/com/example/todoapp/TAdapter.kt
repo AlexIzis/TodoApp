@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 /** Класс адаптера для RecyclerView */
 class TAdapter: RecyclerView.Adapter<TAdapter.ViewHolder>() {
 
-    var todolist = ArrayList<Task>()
+    private val todolist = mutableListOf<Task>()
     var onItemClick: ((Task) -> Unit)? = null /** Инициализация слушателя нажатия на заметку */
 
 
@@ -34,7 +34,7 @@ class TAdapter: RecyclerView.Adapter<TAdapter.ViewHolder>() {
     override fun onBindViewHolder(holder: TAdapter.ViewHolder, position: Int) {
         holder.tmText.text = todolist[position].time
         holder.edtText.text = todolist[position].name
-        holder.dtText.text = todolist[position].date_start
+        holder.dtText.text = todolist[position].dateStart
     }
 
     override fun getItemCount(): Int {
@@ -43,11 +43,9 @@ class TAdapter: RecyclerView.Adapter<TAdapter.ViewHolder>() {
 
     /** Метод, с помощью которого происходит передача заметок для отображения */
     @SuppressLint("NotifyDataSetChanged")
-    fun setInfo(tmp_arr: ArrayList<Task>){
+    fun setInfo(tmp_arr: MutableList<Task>){
         todolist.clear()
-        for (task in tmp_arr){
-            todolist.add(task)
-        }
+        todolist.addAll(tmp_arr)
         notifyDataSetChanged()
     }
 }

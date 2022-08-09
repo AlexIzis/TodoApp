@@ -5,8 +5,8 @@ package com.example.todoapp
  */
 class Task (
     var id: Int,
-    var date_start: String,
-    var date_finish: String,
+    var dateStart: String,
+    var dateFinish: String,
     var time: String,
     var name: String,
     var description: String

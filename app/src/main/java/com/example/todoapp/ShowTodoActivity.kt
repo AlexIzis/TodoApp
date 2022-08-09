@@ -4,16 +4,15 @@ import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
-import org.json.JSONObject
 import java.text.SimpleDateFormat
 
 /** Activity запускается при нажатии на заметку
  * Происходит получение данных о заметке, преобразование в json формат и его отображение на экран */
-class MainActivity2 : AppCompatActivity() {
+class ShowTodoActivity : AppCompatActivity() {
     @SuppressLint("SimpleDateFormat")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main2)
+        setContentView(R.layout.show_todo_activity)
 
         /** Инициализация необходимых переменных */
         val text: TextView = findViewById(R.id.textView)
@@ -28,20 +27,14 @@ class MainActivity2 : AppCompatActivity() {
         val dateStart = start?.let { SimpleDateFormat("dd.mm.yyyy").parse(it) }
         val dateFinish = finish?.let { SimpleDateFormat("dd.mm.yyyy").parse(it) }
 
-        /** Создание json объекта заметки */
-        val resStr = JSONObject()
-        resStr.put("id", id)
-        if (dateStart != null) {
-            resStr.put("date_start", dateStart.time)
-        }
-        if (dateFinish != null) {
-            resStr.put("date_finish", dateFinish.time)
-        }
-        resStr.put("time", time)
-        resStr.put("name", name)
-        resStr.put("description", desc)
+        val resStr = "ID заметки: $id\n" +
+                "Дата начала: ${dateStart?.time}\n" +
+                "Дата окончания: ${dateFinish?.time}\n" +
+                "Время: $time\n" +
+                "Название: $name\n" +
+                "Подробное описание: $desc\n"
 
         /** Отображение информации о заметке */
-        text.text = resStr.toString(4)
+        text.text = resStr
     }
 }

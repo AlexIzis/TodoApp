@@ -9,10 +9,10 @@ import android.widget.EditText
 /**
  * Activity запускается при нажатии кнопки создания заметки
  * Происходит сбор информации о заметке и передача его в главное activity */
-class MainActivity3 : AppCompatActivity() {
+class CreateTodoActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main3)
+        setContentView(R.layout.create_todo_activity)
 
         /** Инициализация необходимых переменных */
         val nameView: EditText = findViewById(R.id.editTextTextPersonName)

@@ -10,10 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TodoApp">
         <activity
-            android:name=".MainActivity3"
+            android:name=".CreateTodoActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity2"
+            android:name=".ShowTodoActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
