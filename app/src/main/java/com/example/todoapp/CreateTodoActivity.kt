@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 
 /**
  * Activity запускается при нажатии кнопки создания заметки
@@ -21,6 +22,10 @@ class CreateTodoActivity : AppCompatActivity() {
         val dateView: EditText = findViewById(R.id.editTextDate)
         val button: Button = findViewById(R.id.button)
 
+        /** Создание шаблонов для проверки даты и времени */
+        val timeRegex = Regex("[0-1][0-9]:[0-5][0-9]")
+        val dateRegex = Regex("""\w\.\w\.\d{4}""")
+
         /** Слушатель кнопки создания заметки
          * Получение данных с полей ввода и отправка их в клавное activity */
         button.setOnClickListener{
@@ -28,13 +33,18 @@ class CreateTodoActivity : AppCompatActivity() {
             val desc = descView.text.toString()
             val time = timeView.text.toString()
             val date = dateView.text.toString()
-            val intent = Intent(this, MainActivity::class.java)
-            intent.putExtra("crName", name)
-            intent.putExtra("crDesc", desc)
-            intent.putExtra("crTime", time)
-            intent.putExtra("crDate", date)
-            setResult(RESULT_OK, intent)
-            finish()
+            if (time.matches(timeRegex) && date.matches(dateRegex)){
+                val intent = Intent(this, MainActivity::class.java)
+                intent.putExtra("crName", name)
+                intent.putExtra("crDesc", desc)
+                intent.putExtra("crTime", time)
+                intent.putExtra("crDate", date)
+                setResult(RESULT_OK, intent)
+                finish()
+            } else {
+                Toast.makeText(this, "Пожалуйста, проверьте введённые значения",
+                    Toast.LENGTH_LONG).show()
+            }
         }
     }
 }
