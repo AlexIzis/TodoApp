@@ -13,7 +13,6 @@ class TAdapter: RecyclerView.Adapter<TAdapter.ViewHolder>() {
     private val todolist = mutableListOf<Task>()
     var onItemClick: ((Task) -> Unit)? = null /** Инициализация слушателя нажатия на заметку */
 
-
     inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         val edtText: TextView = itemView.findViewById(R.id.nameText)
         val dtText: TextView = itemView.findViewById(R.id.dateText)
@@ -32,9 +31,10 @@ class TAdapter: RecyclerView.Adapter<TAdapter.ViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: TAdapter.ViewHolder, position: Int) {
-        holder.tmText.text = todolist[position].time
-        holder.edtText.text = todolist[position].name
-        holder.dtText.text = todolist[position].dateStart
+        val tmpItem = todolist[position]
+        holder.tmText.text = tmpItem.time
+        holder.edtText.text = tmpItem.name
+        holder.dtText.text = tmpItem.dateStart
     }
 
     override fun getItemCount(): Int {
