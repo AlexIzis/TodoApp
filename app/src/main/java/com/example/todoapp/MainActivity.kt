@@ -20,7 +20,6 @@ class MainActivity : AppCompatActivity(){
         val calendar: CalendarView = findViewById(R.id.calendarView)
         val fab: FloatingActionButton = findViewById(R.id.floatingActionButton)
         val recyclerView: RecyclerView = findViewById(R.id.recyclerview)
-        val adapter = TAdapter() /** Адаптер RecyclerView */
         val fullTodoList = mutableListOf<Task>() /** Массив для хранения всего списка заметок */
         val todoListToAdapter = mutableListOf<Task>() /** Массив с отобранными по дню заметками,
                                                     который будет передан в адаптер */
@@ -35,13 +34,8 @@ class MainActivity : AppCompatActivity(){
         fullTodoList.add(Task(4,"1.7.2022", "1.7.2022", "12:31",
             "four", "hello"))
 
-
-        /** Настройка RecyclerView */
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = adapter
-
         /** По нажатию на заметку выполняется передача данных в отдельное activity и его запуск*/
-        adapter.onItemClick = { Task ->
+        fun onItemClick() = { Task: Task ->
             val intent = Intent(this, ShowTodoActivity::class.java)
             intent.putExtra("id", Task.id)
             intent.putExtra("name", Task.name)
@@ -51,6 +45,10 @@ class MainActivity : AppCompatActivity(){
             intent.putExtra("desc", Task.description)
             startActivity(intent)
         }
+        val adapter = TAdapter(onItemClick()) /** Адаптер RecyclerView */
+        /** Настройка RecyclerView */
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.adapter = adapter
 
         /** Получение данных из activity, которое отвечает за сбор информации о новой заметке,
          *  и её создание */

@@ -8,10 +8,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 /** Класс адаптера для RecyclerView */
-class TAdapter: RecyclerView.Adapter<TAdapter.ViewHolder>() {
+class TAdapter(private val onItemClick: ((Task) -> Unit)?): RecyclerView.Adapter<TAdapter.ViewHolder>() {
 
     private val todolist = mutableListOf<Task>()
-    var onItemClick: ((Task) -> Unit)? = null /** Инициализация слушателя нажатия на заметку */
 
     inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         val edtText: TextView = itemView.findViewById(R.id.nameText)
@@ -19,9 +18,9 @@ class TAdapter: RecyclerView.Adapter<TAdapter.ViewHolder>() {
         val tmText: TextView = itemView.findViewById(R.id.timeText)
         /** Вызов слушателя по нажатию на заметку */
         init {
-            itemView.setOnClickListener{
-                onItemClick?.invoke(todolist[adapterPosition])
-            }
+                itemView.setOnClickListener{
+                    onItemClick?.invoke(todolist[adapterPosition])
+                }
         }
     }
 
