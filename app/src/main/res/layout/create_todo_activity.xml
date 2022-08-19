@@ -13,12 +13,13 @@
         android:layout_marginStart="50dp"
         android:layout_marginTop="30dp"
         android:ems="10"
-        android:hint="Название"
+        android:hint="@string/createName"
         android:inputType="textPersonName"
         android:minHeight="48dp"
         android:textColorHint="#757575"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:importantForAutofill="no" />
 
     <EditText
         android:id="@+id/editTextTextPersonName2"
@@ -27,11 +28,12 @@
         android:layout_marginStart="50dp"
         android:layout_marginTop="30dp"
         android:ems="10"
-        android:hint="Описание"
+        android:hint="@string/createDesc"
         android:inputType="textPersonName"
         android:minHeight="48dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName"
+        android:importantForAutofill="no" />
 
     <EditText
         android:id="@+id/editTextTime"
@@ -40,11 +42,12 @@
         android:layout_marginStart="50dp"
         android:layout_marginTop="30dp"
         android:ems="10"
-        android:hint="Например 14:00"
+        android:hint="@string/exampleTime"
         android:inputType="time"
         android:minHeight="48dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2"
+        android:importantForAutofill="no" />
 
     <EditText
         android:id="@+id/editTextDate"
@@ -53,20 +56,31 @@
         android:layout_marginStart="50dp"
         android:layout_marginTop="30dp"
         android:ems="10"
-        android:hint="Например 1.4.2022"
+        android:hint="@string/exampleDate"
         android:inputType="date"
         android:minHeight="48dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTime" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextTime"
+        android:importantForAutofill="no" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/buttonCreate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
         android:layout_marginTop="30dp"
-        android:text="Создать"
+        android:text="@string/butCreate"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextDate" />
+
+    <Button
+        android:id="@+id/buttonBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="30dp"
+        android:text="@string/butBack"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonCreate" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

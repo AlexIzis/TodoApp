@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
-import java.text.SimpleDateFormat
 
 /** Activity запускается при нажатии на заметку
  * Происходит получение данных о заметке, преобразование в json формат и его отображение на экран */
@@ -23,13 +22,10 @@ class ShowTodoActivity : AppCompatActivity() {
         val desc = intent.getStringExtra("desc")
         val time = intent.getStringExtra("time")
 
-        /** Перевод даты в формат unix time */
-        val dateStart = start?.let { SimpleDateFormat("dd.mm.yyyy").parse(it) }
-        val dateFinish = finish?.let { SimpleDateFormat("dd.mm.yyyy").parse(it) }
 
         val resStr = "ID заметки: $id\n" +
-                "Дата начала: ${dateStart?.time}\n" +
-                "Дата окончания: ${dateFinish?.time}\n" +
+                "Дата начала: ${start}\n" +
+                "Дата окончания: ${finish}\n" +
                 "Время: $time\n" +
                 "Название: $name\n" +
                 "Подробное описание: $desc\n"

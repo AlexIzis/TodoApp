@@ -20,7 +20,8 @@ class CreateTodoActivity : AppCompatActivity() {
         val descView: EditText = findViewById(R.id.editTextTextPersonName2)
         val timeView: EditText = findViewById(R.id.editTextTime)
         val dateView: EditText = findViewById(R.id.editTextDate)
-        val button: Button = findViewById(R.id.button)
+        val button: Button = findViewById(R.id.buttonCreate)
+        val buttonBack: Button = findViewById(R.id.buttonBack)
 
         /** Создание шаблонов для проверки даты и времени */
         val timeRegex = Regex("[0-1][0-9]:[0-5][0-9]")
@@ -45,6 +46,11 @@ class CreateTodoActivity : AppCompatActivity() {
                 Toast.makeText(this, "Пожалуйста, проверьте введённые значения",
                     Toast.LENGTH_LONG).show()
             }
+        }
+
+        /** Слушатель кнопки возвращения в MainActivity */
+        buttonBack.setOnClickListener {
+            finish()
         }
     }
 }

@@ -42,9 +42,9 @@ class TAdapter(private val onItemClick: ((Task) -> Unit)?): RecyclerView.Adapter
 
     /** Метод, с помощью которого происходит передача заметок для отображения */
     @SuppressLint("NotifyDataSetChanged")
-    fun setInfo(tmp_arr: MutableList<Task>){
+    fun setInfo(tmpArr: MutableList<Task>){
         todolist.clear()
-        todolist.addAll(tmp_arr)
+        todolist.addAll(tmpArr)
         notifyDataSetChanged()
     }
 }
