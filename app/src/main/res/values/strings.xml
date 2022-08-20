@@ -2,9 +2,11 @@
     <string name="app_name">Заметки</string>
     <string name="createName">Название</string>
     <string name="createDesc">Описание</string>
-    <string name="exampleTime">Например 14:00</string>
-    <string name="exampleDate">Например 1.4.2022</string>
+    <string name="exampleTime">Выберите время</string>
+    <string name="exampleDate">Выберите дату</string>
     <string name="butCreate">Создать</string>
     <string name="butBack">Назад</string>
     <string name="floatingButton">plus image</string>
+    <string name="butTime">Выбрать время</string>
+    <string name="butDate">Выбрать дату</string>
 </resources>
