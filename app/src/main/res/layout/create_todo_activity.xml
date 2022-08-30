@@ -75,16 +75,6 @@
         app:layout_constraintTop_toBottomOf="@+id/buttonDate" />
 
     <Button
-        android:id="@+id/buttonBack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="30dp"
-        android:text="@string/butBack"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonCreate" />
-
-    <Button
         android:id="@+id/buttonTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

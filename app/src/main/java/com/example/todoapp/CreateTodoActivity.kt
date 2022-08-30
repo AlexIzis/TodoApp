@@ -31,7 +31,6 @@ class CreateTodoActivity : AppCompatActivity() {
         val timeView: TextView = findViewById(R.id.editTextTime)
         val dateView: TextView = findViewById(R.id.editTextDate)
         val button: Button = findViewById(R.id.buttonCreate)
-        val buttonBack: Button = findViewById(R.id.buttonBack)
         val buttonTime: Button = findViewById(R.id.buttonTime)
         val buttonDate: Button = findViewById(R.id.buttonDate)
 
@@ -53,11 +52,6 @@ class CreateTodoActivity : AppCompatActivity() {
                 setResult(RESULT_OK, intent)
                 finish()
             }
-        }
-
-        /** Слушатель кнопки возвращения в MainActivity */
-        buttonBack.setOnClickListener {
-            finish()
         }
 
         /** Слушатель кнопки выбора времени */
