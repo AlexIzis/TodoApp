@@ -13,6 +13,9 @@ class ShowTodoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.show_todo_activity)
 
+        /** Отображение кнопки назад на ActionBar */
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         /** Инициализация необходимых переменных */
         val text: TextView = findViewById(R.id.textView)
         val id = intent.getIntExtra("id", 0)
@@ -32,5 +35,11 @@ class ShowTodoActivity : AppCompatActivity() {
 
         /** Отображение информации о заметке */
         text.text = resStr
+    }
+
+    /** Переопределение функции возвращения в предыдущее activity */
+    override fun onSupportNavigateUp(): Boolean {
+        finish()
+        return true
     }
 }

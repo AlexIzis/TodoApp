@@ -22,6 +22,9 @@ class CreateTodoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.create_todo_activity)
 
+        /** Отображение кнопки назад на ActionBar */
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         /** Инициализация необходимых переменных */
         val nameView: EditText = findViewById(R.id.editTextTextPersonName)
         val descView: EditText = findViewById(R.id.editTextTextPersonName2)
@@ -80,5 +83,11 @@ class CreateTodoActivity : AppCompatActivity() {
             DatePickerDialog(this, dateSetListener, cal.get(Calendar.YEAR),
                 cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH)).show()
         }
+    }
+
+    /** Переопределение функции возвращения в предыдущее activity */
+    override fun onSupportNavigateUp(): Boolean {
+        finish()
+        return true
     }
 }
